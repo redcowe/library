@@ -16,6 +16,17 @@
         <div class="library-container-lower">
             <button class="new-book-button" id="newBookButton">Create Book</button>
         </div>
+        <div class="create-book-modal-container" id="createBookModalContainer">
+            <div class="create-book-modal-content">
+                <form class="create-book-form" id="createBookForm">
+                    Title: <input type="text" name="title" id="bookFormTitle">
+                    Author: <input type="text" name="author" id="bookFormAuthor">
+                    Pages: <input type="number" name="pages" id="bookFormPages">
+                    Completed? <input type="checkbox" name="read-status" id="bookFormReadStatus">
+                    <input type="button" value="Submit" id="bookFormSubmit">
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
