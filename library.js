@@ -72,7 +72,7 @@ function createBook() {
     createBookModalContainer.style.display = "none"
     createBookForm.reset()
 }
-// Creating the book object 
+
 bookFormSubmit.addEventListener('click', () => {
     createBook()
 }) 
