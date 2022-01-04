@@ -1,0 +1,21 @@
+* {
+    border: solid red 1px;
+}
+
+html,
+body { 
+    width: 99%;
+    height: 99%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.library-container {
+    display: flex;
+    width: 150vh;
+    height: 60vh;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
