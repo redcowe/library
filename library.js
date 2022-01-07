@@ -2,6 +2,7 @@
 const libraryContainerUpper = document.getElementById("libraryContainerUpper")
 const newBookButton = document.getElementById("newBookButton")
 const bookFormSubmit = document.getElementById("bookFormSubmit")
+const bookFormCancel = document.getElementById("bookFormCancel")
 const bookFormReadStatus = document.getElementById("bookFormReadStatus")
 const bookFormPages = document.getElementById("bookFormPages")
 const bookFormAuthor = document.getElementById("bookFormAuthor")
@@ -13,6 +14,13 @@ let numOfBooks = 0
 let myBook
 let myLibrary = []
 
+function checkEmptyBookCase() {
+    if (myLibrary.length == 0)
+    bookCase.innerText = "It's empty in here..."
+}
+
+checkEmptyBookCase()
+
 function Book(title, author, pages, readStatus) {
     this.title = title
     this.author = author
@@ -21,7 +29,14 @@ function Book(title, author, pages, readStatus) {
 }
 
 function createBook() {
-    myBook = new Book(bookFormTitle.value, bookFormAuthor.value, bookFormPages.value, bookFormReadStatus.checked)
+    //Checking for empty forms before proceeding
+    if (bookFormTitle.value == ""|| bookFormAuthor.value == "" || bookFormPages.value == "") {
+        alert("Empty or incorrect field detected, please enter all fields correctly.")
+        return false
+    } else {
+        myBook = new Book(bookFormTitle.value, bookFormAuthor.value, bookFormPages.value, bookFormReadStatus.checked)
+    }
+
 }
 function addBookToLibrary() {
     myLibrary.push(myBook)
@@ -30,6 +45,7 @@ function addBookToLibrary() {
 }
 
 function updateDisplay() {
+    bookCase.innerHTML = ""
     myLibrary.forEach(book => {
         //creating html for the book
         const bookContainer = document.createElement('div')
@@ -51,12 +67,23 @@ function updateDisplay() {
         bookPages.innerText = book.pages
         const bookReadStatus = document.createElement("div")
         bookReadStatus.setAttribute('class', 'book-read-status')
+        const changeReadStatus = document.createElement('button')
+        changeReadStatus.innerText = "Update Status"
+        changeReadStatus.addEventListener('click', function () {
+            if (book.readStatus == true){
+                book.readStatus = false
+                bookReadStatus.innerText = "Not Read"
+            } else {
+                book.readStatus = true
+                bookReadStatus.innerText = "Read"
+            }
+            })
         if (book.readStatus == true){
             bookReadStatus.innerText = "Read"
-        } else {
+        } else if (book.readStatus == false) {
             bookReadStatus.innerText = "Not Read"
         }
-        const elementArray = [bookTitle, bookAuthor, bookPages, bookReadStatus]
+        const elementArray = [bookTitle, bookAuthor, bookPages, changeReadStatus,bookReadStatus]
         for (let i = 0; i < elementArray.length; i++) {
             bookUpper.appendChild(elementArray[i])
         }
@@ -67,6 +94,12 @@ function updateDisplay() {
         removeBookButton.setAttribute('class', 'remove-book-button')
         removeBookButton.innerText = "Remove Book"
         bookLower.appendChild(removeBookButton)
+
+        removeBookButton.addEventListener('click', function() {
+            myLibrary.pop(this)
+            updateDisplay()
+            checkEmptyBookCase()
+        })
 
         bookContainer.appendChild(bookUpper)
         bookContainer.appendChild(bookLower)
@@ -81,9 +114,15 @@ newBookButton.addEventListener('click', () => {
 })
 
 bookFormSubmit.addEventListener('click', () => {
-    createBook()
-    addBookToLibrary()
-    updateDisplay()
+    if (createBook() == false) {
+        return 1
+    } else {
+        addBookToLibrary()
+        updateDisplay()
+    }
 })
 
-
+bookFormCancel.addEventListener('click', () => {
+    createBookModalContainer.style.display = "none"  
+    createBookForm.reset()
+})
