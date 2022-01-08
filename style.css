@@ -1,6 +1,4 @@
-* {
-    border: solid red 1px;
-}
+
 
 html,
 body { 
@@ -53,4 +51,33 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.book-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5%;
+    border: 3px solid black;
+    height: 20vh;
+    width: 20vh;
+    flex: 1;
+}
+
+.book-upper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    flex:  0 1 20px;
+}
+
+.book-lower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex:  0 1 20px;
 }
