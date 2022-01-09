@@ -1,14 +1,26 @@
-
-
 html,
 body { 
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0%;
     overflow: hidden;
+    background-color: #37323e;
+    color: #fefefe;
+}
+
+h1 {
+    color: #fefefe;
+    font-weight: bold;
+}
+
+button {
+    border-radius: 5%;
+    cursor: pointer;
+
 }
 
 .library-container {
@@ -18,6 +30,16 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.book-case {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    flex: 0 1 70vh;
 }
 
 .create-book-modal-container {
@@ -51,7 +73,9 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    color: #37323e;
 }
+
 
 .book-container {
     display: flex;
@@ -60,24 +84,40 @@ body {
     align-items: center;
     text-align: center;
     border-radius: 5%;
-    border: 3px solid black;
-    height: 20vh;
-    width: 20vh;
+    border: 5px solid black;
+    height: 220px;
+    width: 220px;
     flex: 1;
+    background-color: #fefefe;
+    padding: 15px;
 }
 
 .book-upper {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 15px;
     align-items: center;
-    flex:  0 1 20px;
+    height: 100%;
+    width: 100%;
 }
 
 .book-lower {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex:  0 1 20px;
+
+}
+
+.book-author,
+.book-title,
+.book-pages,
+.book-read-status {
+    color: #37323e;
+    width: 100%;
+    
+}
+
+.book-read-status {
+
 }
